@@ -34,24 +34,56 @@
             return _state;
         }
 
-        public State Manipulate(Action action)
+       public State Manipulate(Action action)
         {
-            if (action == Action.Open) {
-                Open();
+            switch (action)
+            {
+                case Action.Open:
+                    Open();
+                    break;
+                case Action.Close:
+                    Close();
+                    break;
+                case Action.Lock:
+                    Lock();
+                    break;
+                case Action.Unlock:
+                    Unlock();
+                    break;
+                default:
+                    Console.WriteLine("Invalid input, please enter a valid selection");
+                    break;
             }
-            return _state;
+
+            return _state; // Return the updated state of the chest
         }
+
 
         public void Unlock()
         {
-            throw new NotImplementedException();
+            if (_state == State.Locked)
+            {
+                _state = State.Closed;
+                Console.WriteLine("The chest is now unlocked.");
+            }
+            else
+            {
+                Console.WriteLine("The chest is already unlocked.");
+            }
         }
 
         public void Lock()
         {
-            throw new NotImplementedException();
+            if (_state == State.Closed)
+            {
+                _state = State.Locked;
+                Console.WriteLine("The chest is now locked.");
+            }
+            else
+            {
+                Console.WriteLine("The chest must be closed before it can be locked.");
+            }
         }
-
         public void Open()
         {
             // We should check if the chest is closed
@@ -71,7 +103,15 @@
 
         public void Close()
         {
-            throw new NotImplementedException();
+            if (_state == State.Open)
+            {
+                _state = State.Closed;
+                Console.WriteLine("The chest is now closed.");
+            }
+            else
+            {
+                Console.WriteLine("The chest is already closed.");
+            }
         }
 
         public override string ToString()
