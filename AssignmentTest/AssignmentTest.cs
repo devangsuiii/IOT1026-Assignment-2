@@ -7,6 +7,7 @@ namespace AssignmentTest
     public class AssignmentTests
     {
         /// <summary>
+        
         /// Tests the Unlock method of the TreasureChest class.
         /// </summary>
         [TestMethod]
